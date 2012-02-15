@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Clever_Catalog>
+            <version>0.1.0</version>
+        </Clever_Catalog>
+    </modules>
+    <global>
+        <blocks>
+            <catalog>
+                <rewrite>
+                    <navigation>Clever_Catalog_Block_Navigation</navigation>
+                </rewrite>
+            </catalog>
+        </blocks>
+    </global>
+</config>

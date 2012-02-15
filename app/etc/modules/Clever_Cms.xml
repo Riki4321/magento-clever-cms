@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Clever_Adminhtml>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Clever_Adminhtml>
+        <Clever_Cms>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Clever_Adminhtml/>
+            </depends>
+        </Clever_Cms>
+        <Clever_Catalog>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Clever_Catalog>
+    </modules>
+</config>
