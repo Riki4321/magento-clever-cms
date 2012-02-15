@@ -1,0 +1,46 @@
+# Magento CMS pages as a tree structure
+
+[Clever CMS](http://i.imgur.com/3NOIN)
+
+## Features
+* CMS pages as a tree structure, drag & drop pages
+* Restrict CMS pages access to customer groups (if enabled)
+* Create 301 permanent redirects for old urls (if enabled)
+* Manage a global tree and a store view independent tree
+* Frontend navigation
+
+## Installation
+
+### Magento CE 1.6+
+
+Install with [modgit](https://github.com/jreinke/modgit)
+
+    $ cd /path/to/magento
+    $ modgit init
+    $ modgit clone clever-cms https://github.com/jreinke/magento-clever-cms.git
+
+Manual download
+
+* Download latest version [here](https://github.com/jreinke/magento-clever-cms/downloads)
+* Unzip in Magento root folder
+* Clean cache
+
+### Magento CE 1.4.x, 1.5.x
+
+**the master branch compatibility with versions of Magento above is not guaranteed!**
+
+Install with [modgit](https://github.com/jreinke/modgit)
+
+    $ cd /path/to/magento
+    $ modgit init
+    $ modgit clone clever-cms https://github.com/jreinke/magento-clever-cms.git --branch 1.2
+
+Manual download
+
+* Download 1.x version [here](https://github.com/jreinke/magento-clever-cms/tags)
+* Unzip in Magento root folder
+* Clean cache
+
+## Full overview
+
+I wrote an article on my blog for full extension overview. [Click here](http://www.johannreinke.com/en/2012/01/10/magento-cms-pages-in-a-tree-structure/)
