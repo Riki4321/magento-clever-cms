@@ -1,6 +1,6 @@
 # Magento CMS pages as a tree structure
 
-![Clever CMS](http://i.imgur.com/3NOIN)
+![Clever CMS](http://i.imgur.com/3NOIN.jpg)
 
 ## Features
 * CMS pages as a tree structure, drag & drop pages
