@@ -1,6 +1,6 @@
 # Magento CMS pages as a tree structure
 
-[Clever CMS](http://i.imgur.com/3NOIN)
+![Clever CMS](http://i.imgur.com/3NOIN)
 
 ## Features
 * CMS pages as a tree structure, drag & drop pages
@@ -13,13 +13,13 @@
 
 ### Magento CE 1.6+
 
-Install with [modgit](https://github.com/jreinke/modgit)
+Install with [modgit](https://github.com/jreinke/modgit):
 
     $ cd /path/to/magento
     $ modgit init
     $ modgit clone clever-cms https://github.com/jreinke/magento-clever-cms.git
 
-Manual download
+or download package manually:
 
 * Download latest version [here](https://github.com/jreinke/magento-clever-cms/downloads)
 * Unzip in Magento root folder
@@ -27,15 +27,15 @@ Manual download
 
 ### Magento CE 1.4.x, 1.5.x
 
-**the master branch compatibility with versions of Magento above is not guaranteed!**
+**The master branch compatibility with versions of Magento above is not guaranteed!**
 
-Install with [modgit](https://github.com/jreinke/modgit)
+Install with [modgit](https://github.com/jreinke/modgit):
 
     $ cd /path/to/magento
     $ modgit init
     $ modgit clone clever-cms https://github.com/jreinke/magento-clever-cms.git --branch 1.2
 
-Manual download
+or download package manually:
 
 * Download 1.x version [here](https://github.com/jreinke/magento-clever-cms/tags)
 * Unzip in Magento root folder
