@@ -98,7 +98,7 @@ class JR_CleverCms_Model_Cms_Page extends Mage_Cms_Model_Page
     public function getChildren()
     {
         $collection = $this->getCollection();
-        $collection->setOrder('position', $collection::SORT_ORDER_ASC);
+        $collection->setOrder('position', Varien_Data_Collection::SORT_ORDER_ASC);
         $collection->getSelect()
             ->where('main_table.store_id = ?', $this->getStoreId())
             ->where('main_table.parent_id = ?', $this->getId());
