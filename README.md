@@ -27,7 +27,8 @@ or download package manually:
 
 ### Magento CE 1.4.x, 1.5.x
 
-**The master branch compatibility with versions of Magento above is not guaranteed!**
+**Compatibility of master branch is not guaranteed with versions of Magento above!**
+**Please download/clone 1.2 branch**
 
 Install with [modgit](https://github.com/jreinke/modgit):
 
@@ -37,10 +38,10 @@ Install with [modgit](https://github.com/jreinke/modgit):
 
 or download package manually:
 
-* Download 1.x version [here](https://github.com/jreinke/magento-clever-cms/tags)
+* Download 1.2.x version [here](https://github.com/jreinke/magento-clever-cms/tags)
 * Unzip in Magento root folder
 * Clean cache
 
 ## Full overview
 
-I wrote an article on my blog for full extension overview. [Click here](http://www.johannreinke.com/en/2012/01/10/magento-cms-pages-in-a-tree-structure/)
+I wrote an article on my blog for full extension overview, [click here](http://www.johannreinke.com/en/2012/01/10/magento-cms-pages-in-a-tree-structure/).
