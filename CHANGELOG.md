@@ -1,5 +1,3 @@
-# CHANGELOG of Clever CMS Magento extension
-
 ## 2.0.0 (branch: master) (2012-02-16)
 
 ### Features
