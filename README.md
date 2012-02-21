@@ -17,7 +17,7 @@ Install with [modgit](https://github.com/jreinke/modgit):
 
     $ cd /path/to/magento
     $ modgit init
-    $ modgit clone clever-cms https://github.com/jreinke/magento-clever-cms.git
+    $ modgit -e README.md -e CHANGELOG.md clone clever-cms https://github.com/jreinke/magento-clever-cms.git
 
 or download package manually:
 
@@ -34,7 +34,7 @@ Install with [modgit](https://github.com/jreinke/modgit):
 
     $ cd /path/to/magento
     $ modgit init
-    $ modgit clone clever-cms https://github.com/jreinke/magento-clever-cms.git --branch 1.2
+    $ modgit -e README.md -e CHANGELOG.md clone clever-cms https://github.com/jreinke/magento-clever-cms.git --branch 1.2
 
 or download package manually:
 
