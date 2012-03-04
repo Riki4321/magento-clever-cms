@@ -1,3 +1,9 @@
+## 1.2.4 (branch: 1.2) (2012-03-04)
+
+### Fixes
+
+* Fixed bug with html cache block in frontend navigation
+
 ## 1.2.3 (branch: 1.2) (2012-02-16)
 
 ### Fixes
