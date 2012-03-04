@@ -1,3 +1,9 @@
+## 2.0.1 (branch: master) (2012-03-04)
+
+### Fixes
+
+* Fixed bug with html cache block in frontend navigation
+
 ## 2.0.0 (branch: master) (2012-02-16)
 
 ### Features
