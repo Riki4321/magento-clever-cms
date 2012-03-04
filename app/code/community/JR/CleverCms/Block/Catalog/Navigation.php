@@ -2,6 +2,31 @@
 
 class JR_CleverCms_Block_Catalog_Navigation extends Mage_Catalog_Block_Navigation
 {
+    public function getCacheKeyInfo()
+    {
+        $shortCacheId = array(
+                'CATALOG_NAVIGATION',
+                Mage::app()->getStore()->getId(),
+                Mage::getDesign()->getPackageName(),
+                Mage::getDesign()->getTheme('template'),
+                Mage::getSingleton('customer/session')->getCustomerGroupId(),
+                'template' => $this->getTemplate(),
+                'name' => $this->getNameInLayout(),
+                $this->getCurrenCategoryKey(),
+                'page_id' => $this->getCurrentCmsPage() ? $this->getCurrentCmsPage()->getId() : false
+        );
+        $cacheId = $shortCacheId;
+
+        $shortCacheId = array_values($shortCacheId);
+        $shortCacheId = implode('|', $shortCacheId);
+        $shortCacheId = md5($shortCacheId);
+
+        $cacheId['category_path'] = $this->getCurrenCategoryKey();
+        $cacheId['short_cache_id'] = $shortCacheId;
+
+        return $cacheId;
+    }
+
     /**
      * Render CMS to html
      *
