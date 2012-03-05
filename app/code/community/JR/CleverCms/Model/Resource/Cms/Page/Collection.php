@@ -9,6 +9,23 @@ class JR_CleverCms_Model_Resource_Cms_Page_Collection extends Mage_Cms_Model_Mys
         $this->_map['fields']['store']   = 'main_table.store_id';
     }
 
+    public function addChildrenFilter(JR_CleverCms_Model_Cms_Page $page)
+    {
+        $this->setOrder('position', Varien_Data_Collection::SORT_ORDER_ASC);
+        $this->getSelect()
+            ->where('main_table.store_id = ?', $page->getStoreId())
+            ->where('main_table.parent_id = ?', $page->getId());
+
+        $currentStoreId = Mage::app()->getStore()->getId();
+        if ($page->getStoreId() == 0 && $currentStoreId) {
+            $this->getSelect()
+                ->join(array('stores' => $this->getTable('cms/page_store')), 'main_table.page_id = stores.page_id', '')
+                ->where('stores.store_id = ?', $currentStoreId);
+        }
+
+        return $this;
+    }
+
     public function addIdFilter($pageIds)
     {
         if (is_array($pageIds)) {

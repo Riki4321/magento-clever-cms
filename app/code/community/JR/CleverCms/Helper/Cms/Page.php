@@ -15,6 +15,11 @@ class JR_CleverCms_Helper_Cms_Page extends Mage_Cms_Helper_Page
 
     public function isAllowed($storeId, $customerGroupId, $pageId)
     {
+        $page = Mage::getModel('cms/page')->load($pageId);
+        if ($page->getStoreId() == 0 && !in_array($storeId, $page->getStores())) {
+            return false;
+        }
+
         if (! $this->isPermissionsEnabled($storeId)) {
             return true;
         }

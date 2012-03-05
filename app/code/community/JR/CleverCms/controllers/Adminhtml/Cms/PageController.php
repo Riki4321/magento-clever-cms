@@ -81,6 +81,11 @@ class JR_CleverCms_Adminhtml_Cms_PageController extends Mage_Adminhtml_Cms_PageC
                 $this->_redirect('*/*/');
                 return;
             }
+        } else {
+            $page->setStoreId($storeId);
+            if ($storeId === 0 && ! Mage::app()->isSingleStoreMode()) {
+                $page->setStores(array_keys(Mage::app()->getStores()));
+            }
         }
 
         $this->_title($page->getId() ? $page->getTitle() : $this->__('New Page'));
@@ -205,6 +210,10 @@ class JR_CleverCms_Adminhtml_Cms_PageController extends Mage_Adminhtml_Cms_PageC
 
             $data['parent_id'] = $this->getRequest()->getParam('parent');
             $data['store_id'] = $this->getRequest()->getParam('store');
+
+            if (!isset($data['stores'])) {
+                $data['stores'] = array();
+            }
 
             $model->addData($data);
 

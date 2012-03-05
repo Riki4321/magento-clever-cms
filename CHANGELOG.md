@@ -1,3 +1,9 @@
+## 2.1.0 (branch: master) (2012-03-05)
+
+### Features
+
+* Added Store View filter on global pages
+
 ## 2.0.1 (branch: master) (2012-03-04)
 
 ### Fixes

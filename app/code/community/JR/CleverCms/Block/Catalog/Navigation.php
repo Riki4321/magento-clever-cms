@@ -2,6 +2,20 @@
 
 class JR_CleverCms_Block_Catalog_Navigation extends Mage_Catalog_Block_Navigation
 {
+    const CACHE_TAG = 'catalog_navigation';
+
+    protected function _construct()
+    {
+        $this->addData(array(
+            'cache_lifetime' => false,
+            'cache_tags'     => array(
+                Mage_Catalog_Model_Category::CACHE_TAG,
+                Mage_Core_Model_Store_Group::CACHE_TAG,
+                self::CACHE_TAG,
+            ),
+        ));
+    }
+
     public function getCacheKeyInfo()
     {
         $shortCacheId = array(

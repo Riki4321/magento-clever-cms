@@ -4,7 +4,7 @@ class JR_CleverCms_Model_Resource_Setup extends Mage_Core_Model_Resource_Setup
 {
     /**
      * Do not install module if Magento is not installed yet.
-     * This prevents error during Mage_Cms data install.
+     * This prevents error when Mage_Cms data install.
      *
      * @see Mage_Core_Model_Resource_Setup::applyUpdates()
      */

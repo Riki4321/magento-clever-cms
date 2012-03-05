@@ -5,7 +5,9 @@ class JR_CleverCms_Model_Resource_Cms_Page extends Mage_Cms_Model_Mysql4_Page
     protected function _construct()
     {
         parent::_construct();
-        Mage::getSingleton('core/resource')->setMappedTableName('cms_page', Mage::getConfig()->getTablePrefix() . 'cms_page_tree');
+        $tablePrefix = Mage::getConfig()->getTablePrefix();
+        Mage::getSingleton('core/resource')->setMappedTableName('cms_page', $tablePrefix . 'cms_page_tree');
+        Mage::getSingleton('core/resource')->setMappedTableName('cms_page_store', $tablePrefix . 'cms_page_tree_store');
     }
 
     public function changeParent(Mage_Cms_Model_Page $page, Mage_Cms_Model_Page $newParent, $afterPageId = null)
@@ -128,14 +130,6 @@ class JR_CleverCms_Model_Resource_Cms_Page extends Mage_Cms_Model_Mysql4_Page
         return $this->_getReadAdapter()->fetchOne($select);
     }
 
-    public function lookupStoreIds($id)
-    {
-        return $this->_getReadAdapter()->fetchCol($this->_getReadAdapter()->select()
-            ->from($this->getTable('cms/page'), 'store_id')
-            ->where("{$this->getIdFieldName()} = ?", $id)
-        );
-    }
-
     public function getCmsPageTitleByIdentifier($identifier)
     {
         $select = $this->_getReadAdapter()->select();
@@ -230,11 +224,22 @@ class JR_CleverCms_Model_Resource_Cms_Page extends Mage_Cms_Model_Mysql4_Page
 
     protected function _afterSave(Mage_Core_Model_Abstract $object)
     {
+        Mage::app()->cleanCache(array(JR_CleverCms_Block_Catalog_Navigation::CACHE_TAG));
+
+        if ($object->getStoreId() === '0') {
+            return parent::_afterSave($object);
+        }
+
         return $this;
     }
 
     protected function _afterLoad(Mage_Core_Model_Abstract $object)
     {
+        if ($object->getId()) {
+            $stores = $this->lookupStoreIds($object->getId());
+            $object->setData('stores', $stores);
+        }
+
         return $this;
     }
 

@@ -30,6 +30,18 @@ class JR_CleverCms_Model_Adminhtml_Cms_Page_Observer
             'disabled' => $urlKeyDisabled
         ));
 
+        if (!Mage::app()->isSingleStoreMode() && $page->getStoreId() == 0) {
+            $form->getElement('base_fieldset')
+                ->removeField('stores');
+            $form->getElement('base_fieldset')->addField('stores', 'multiselect', array(
+                'name'      => 'stores[]',
+                'label'     => Mage::helper('cms')->__('Store View'),
+                'title'     => Mage::helper('cms')->__('Store View'),
+                'required'  => false,
+                'values'    => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(),
+            ));
+        }
+
         $form->getElement('base_fieldset')->addField('include_in_menu', 'select', array(
             'name'     => 'include_in_menu',
             'label'    => Mage::helper('cms')->__('Include in Navigation Menu'),
