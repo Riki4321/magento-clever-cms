@@ -86,7 +86,14 @@ try {
         $homeId = $home->getId();
 
         if (count($pages) > 0) {
+            $insertedPages = array();
             foreach ($pages as $page) {
+                if (!isset($insertedPages[$page['identifier']])) {
+                    $insertedPages[$page['identifier']] = 0;
+                } else {
+                    $insertedPages[$page['identifier']]++;
+                    $page['identifier'] = $page['identifier'] . '-' . $insertedPages[$page['identifier']];
+                }
                 unset($page['page_id']);
                 $page['parent_id'] = $homeId;
                 $page['store_id'] = $storeId;

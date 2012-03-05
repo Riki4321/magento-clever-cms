@@ -1,3 +1,9 @@
+## 2.1.1 (branch: master) (2012-03-05)
+
+### Fixes
+
+* Fixed bug 'Integrity constraint violation: 1062 Duplicate entry' during installation (thanks to vmarmiesse)
+
 ## 2.1.0 (branch: master) (2012-03-05)
 
 ### Features
