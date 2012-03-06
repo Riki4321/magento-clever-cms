@@ -29,7 +29,11 @@ class JR_CleverCms_Adminhtml_Cms_Page_PermissionsController extends Mage_Adminht
             if (null === $storeId) {
                 $storeId = Mage::getSingleton('admin/session')->getCmsLastViewedStore();
                 if (null === $storeId) {
-                    $storeId = 0;
+                    if (Mage::app()->isSingleStoreMode()) {
+                        $storeId = Mage::app()->getDefaultStoreView()->getId();
+                    } else {
+                        $storeId = 0;
+                    }
                 }
             }
             if (! $groupId) {

@@ -2,12 +2,16 @@
 
 class JR_CleverCms_Model_Resource_Cms_Page extends Mage_Cms_Model_Mysql4_Page
 {
+    protected $_tableTreeStoreExists = null;
+
     protected function _construct()
     {
         parent::_construct();
         $tablePrefix = Mage::getConfig()->getTablePrefix();
         Mage::getSingleton('core/resource')->setMappedTableName('cms_page', $tablePrefix . 'cms_page_tree');
-        Mage::getSingleton('core/resource')->setMappedTableName('cms_page_store', $tablePrefix . 'cms_page_tree_store');
+        if ($this->_tableTreeStoreExists()) {
+            Mage::getSingleton('core/resource')->setMappedTableName('cms_page_store', $tablePrefix . 'cms_page_tree_store');
+        }
     }
 
     public function changeParent(Mage_Cms_Model_Page $page, Mage_Cms_Model_Page $newParent, $afterPageId = null)
@@ -226,7 +230,7 @@ class JR_CleverCms_Model_Resource_Cms_Page extends Mage_Cms_Model_Mysql4_Page
     {
         Mage::app()->cleanCache(array(JR_CleverCms_Block_Catalog_Navigation::CACHE_TAG));
 
-        if ($object->getStoreId() === '0') {
+        if ($object->getStoreId() === '0' && $this->_tableTreeStoreExists()) {
             return parent::_afterSave($object);
         }
 
@@ -235,7 +239,7 @@ class JR_CleverCms_Model_Resource_Cms_Page extends Mage_Cms_Model_Mysql4_Page
 
     protected function _afterLoad(Mage_Core_Model_Abstract $object)
     {
-        if ($object->getId()) {
+        if ($object->getId() && $this->_tableTreeStoreExists()) {
             $stores = $this->lookupStoreIds($object->getId());
             $object->setData('stores', $stores);
         }
@@ -285,5 +289,15 @@ class JR_CleverCms_Model_Resource_Cms_Page extends Mage_Cms_Model_Mysql4_Page
         $position+=1;
 
         return $position;
+    }
+
+    protected function _tableTreeStoreExists()
+    {
+        if (null === $this->_tableTreeStoreExists) {
+            $this->_tableTreeStoreExists = $this->getReadConnection()
+                ->isTableExists(Mage::getConfig()->getTablePrefix() . 'cms_page_tree_store');
+        }
+
+        return $this->_tableTreeStoreExists;
     }
 }

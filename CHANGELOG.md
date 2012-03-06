@@ -1,3 +1,10 @@
+## 2.1.2 (branch: master) (2012-03-06)
+
+### Fixes
+
+* Fixed bug 'cms_page_tree_store does not exist'
+* Fixed installation when single store mode
+
 ## 2.1.1 (branch: master) (2012-03-05)
 
 ### Fixes

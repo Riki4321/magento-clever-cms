@@ -28,7 +28,11 @@ class JR_CleverCms_Adminhtml_Cms_PageController extends Mage_Adminhtml_Cms_PageC
         if (null === $storeId) {
             $storeId = Mage::getSingleton('admin/session')->getCmsLastViewedStore();
             if (null === $storeId) {
-                $storeId = 0;
+                if (Mage::app()->isSingleStoreMode()) {
+                    $storeId = Mage::app()->getDefaultStoreView()->getId();
+                } else {
+                    $storeId = 0;
+                }
             }
             $this->_redirect('*/*/', array('store' => $storeId));
             return;

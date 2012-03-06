@@ -68,7 +68,8 @@ try {
     ");
 
     Mage::app()->reinitStores(); // needed to have store list
-    $stores = Mage::app()->getStores(true);
+    $isSingleStoreMode = Mage::app()->isSingleStoreMode();
+    $stores = Mage::app()->getStores(!$isSingleStoreMode);
 
     // Create pages
     foreach ($stores as $store) {
@@ -79,6 +80,11 @@ try {
             ->from(array('pages' => $tablePage))
             ->join(array('stores' => $tablePageStore), 'pages.page_id = stores.page_id', '')
             ->where('stores.store_id = ?', $storeId);
+
+        if ($isSingleStoreMode) {
+            $select->orWhere('stores.store_id = 0');
+        }
+
         $pages = $connection->fetchAll($select);
 
         // Create default root page for this store
@@ -87,6 +93,7 @@ try {
 
         if (count($pages) > 0) {
             $insertedPages = array();
+            $childrenCount = 0;
             foreach ($pages as $page) {
                 if (!isset($insertedPages[$page['identifier']])) {
                     $insertedPages[$page['identifier']] = 0;
@@ -98,6 +105,7 @@ try {
                 $page['parent_id'] = $homeId;
                 $page['store_id'] = $storeId;
                 $connection->insert($tablePageTree, $page);
+                $childrenCount++;
             }
             $installer->run("
                 UPDATE `{$tablePageTree}` SET
@@ -112,7 +120,7 @@ try {
                     `identifier` = '',
                     `level` = '1',
                     `position` = '1',
-                    `children_count` = (SELECT COUNT(*) - 1 FROM `{$tablePage}`)
+                    `children_count` = {$childrenCount}
                 WHERE `store_id` = {$storeId} AND `page_id` = {$homeId};
             ");
         }
