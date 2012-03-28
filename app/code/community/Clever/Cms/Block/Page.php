@@ -17,7 +17,7 @@ class Clever_Cms_Block_Page extends Mage_Cms_Block_Page
             $breadcrumbs->addCrumb('home', array('label' => Mage::helper('cms')->__('Home'), 'title' => Mage::helper('cms')->__('Go to Home Page'), 'link' => Mage::getBaseUrl()));
             foreach ($page->getParentIds() as $k => $parentId) {
                 $parent = Mage::getModel('cms/page')->load($parentId);
-                if ($parent->getId() && $parent->getParentId()) {
+		if ($parent->getId() && $parent->getParentId() && $parent->getIdentifier() != Mage::getStoreConfig('cms/clever/root_cms_page')) {
                     $breadcrumbs->addCrumb('cms_page_' . $k, array('label' => $parent->getTitle(), 'title' => $parent->getTitle(), 'link' => rtrim(Mage::getBaseUrl() . $parent->getIdentifier(), '/') . '/'));
                 }
             }
