@@ -251,7 +251,13 @@ class Clever_Catalog_Block_Navigation extends Mage_Catalog_Block_Navigation
      */
     public function getCmsRootPage()
     {
-        return Mage::getModel('cms/page')->loadRootByStoreId($this->getStore()->getId());
+        $rootPage = Mage::getStoreConfig('cms/clever/root_cms_page', $this->getStore()->getId());
+
+        return Mage::getModel('cms/page')
+            ->setStoreId($this->getStore()->getId())
+            ->load($rootPage, 'identifier');
+
+        //return Mage::getModel('cms/page')->loadRootByStoreId($this->getStore()->getId());
     }
 
     /**

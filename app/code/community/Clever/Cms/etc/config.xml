@@ -74,4 +74,13 @@
             </modules>
         </translate>
     </adminhtml>
+
+    <default>
+        <cms>
+            <clever>
+                <root_cms_page>home</root_cms_page>
+            </clever>
+        </cms>
+    </default>
+
 </config>
